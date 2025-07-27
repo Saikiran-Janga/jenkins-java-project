@@ -4,6 +4,7 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>in.RAHAM</groupId>
     <artifactId>NETFLIX</artifactId>
     <packaging>war</packaging>
@@ -15,13 +16,13 @@
         <docker.image.prefix>kammana</docker.image.prefix>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.jupiter.version>5.13.4</junit.jupiter.version>
     </properties>
 
     <dependencies>
-        <!-- Modern JUnit 5 dependency for unit testing -->
+        <!-- JUnit 5 for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -29,7 +30,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Keep bedrock-runtime-maven only if your project requires it -->
+        <!-- bedrock-runtime-maven (remove if not needed) -->
         <dependency>
             <groupId>com.oracle.bedrock</groupId>
             <artifactId>bedrock-runtime-maven</artifactId>
@@ -58,7 +59,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler plugin configured for Java 11 -->
+            <!-- Compiler Plugin for Java 11 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -70,13 +71,15 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <!-- WAR plugin for packaging as WAR -->
+
+            <!-- WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
             </plugin>
-            <!-- Surefire plugin for running unit tests with JUnit 5 -->
+
+            <!-- Surefire Plugin to run JUnit 5 tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -84,8 +87,9 @@
                 <configuration>
                     <useModulePath>false</useModulePath>
                 </configuration>
-            </plugin>
+            </plugin>            
         </plugins>
     </build>
+
 </project>
 
