@@ -4,7 +4,6 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>in.RAHAM</groupId>
     <artifactId>NETFLIX</artifactId>
     <packaging>war</packaging>
@@ -16,21 +15,21 @@
         <docker.image.prefix>kammana</docker.image.prefix>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <!-- Set encoding if needed -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
+        <junit.jupiter.version>5.13.4</junit.jupiter.version>
     </properties>
 
     <dependencies>
-        <!-- Updated JUnit 5 dependency -->
+        <!-- Modern JUnit 5 dependency for unit testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.13.4</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- If you are still using bedrock-runtime-maven and need it, keep it, else remove -->
+        <!-- Keep bedrock-runtime-maven only if your project requires it -->
         <dependency>
             <groupId>com.oracle.bedrock</groupId>
             <artifactId>bedrock-runtime-maven</artifactId>
@@ -43,7 +42,6 @@
             <id>nexusRepo</id>
             <url>http://13.233.230.166:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
-
         <repository>
             <id>nexusRepo</id>
             <url>http://13.233.230.166:8081/repository/maven-releases/</url>
@@ -60,7 +58,7 @@
 
     <build>
         <plugins>
-            <!-- Updated Maven Compiler Plugin -->
+            <!-- Compiler plugin configured for Java 11 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -69,31 +67,25 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <release>${maven.compiler.release}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-
-            <!-- Updated Maven WAR Plugin -->
+            <!-- WAR plugin for packaging as WAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
             </plugin>
-
-            <!-- (Optional) Surefire plugin for running JUnit 5 tests -->
+            <!-- Surefire plugin for running unit tests with JUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
-                    <includes>
-                        <include>**/*Tests.java</include>
-                        <include>**/*Test.java</include>
-                    </includes>
                     <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
 
